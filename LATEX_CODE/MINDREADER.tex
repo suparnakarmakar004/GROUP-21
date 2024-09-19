@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+\title{2. Java Program: Mind Reader App}
+\author{}
+\date{}
+\maketitle
+
+\begin{lstlisting}
+// Mind Reader App in Java
+
+import java.util.Scanner;
+
+public class MindReaderApp {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Step 1: Ask user to think of a number
+        System.out.println("Think of a number between 1 and 10.");
+        
+        // Pause for dramatic effect
+        System.out.println("Now, multiply that number by 2.");
+        waitForUser();
+        
+        // Step 2: Add a fixed number to the result
+        System.out.println("Add 8 to your result.");
+        waitForUser();
+        
+        // Step 3: Divide the result by 2
+        System.out.println("Divide the result by 2.");
+        waitForUser();
+        
+        // Step 4: Subtract the original number
+        System.out.println("Finally, subtract the original number.");
+        waitForUser();
+        
+        // Reveal the answer
+        System.out.println("The result is... 4!");
+        
+        scanner.close();
+    }
+
+    // Helper method to pause and wait for the user
+    private static void waitForUser() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
+    }
+}
+\end{lstlisting}
+
+\end{document}
