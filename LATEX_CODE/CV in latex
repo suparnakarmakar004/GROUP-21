@@ -1,0 +1,41 @@
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+\draw[line width=2pt, black]
+ ($(current page.north west) + (1cm,-1cm)$)
+rectangle
+($(current page.south east) + (-1cm,1cm)$);
+\end{tikzpicture}%
+\vspace{-1cm}
+\begin{center}
+    {\Huge \textbf{Steps to Create My CV}} \\[1em]
+\end{center}
+% Step 1
+\section*{1. Document Setup}
+I started by selecting the document class as ‘article’ and set the font size to 10pt on A4 paper. I used the ‘geometry’ package to adjust the margins to 0.7 inches all around, ensuring a clean and spacious layout.
+
+% Step 2
+\section*{2. Adding Essential Packages}
+To enhance the appearance and functionality of my CV, I imported several LaTeX packages:
+\begin{itemize}[label=\textbullet, left=0pt]
+    \item \texttt{geometry} for controlling the page layout.
+    \item \texttt{enumitem} to customize the formatting of lists.
+    \item \texttt{hyperref} for adding clickable links to my contact details.
+    \item \texttt{xcolor} to define custom colors for text and accents.
+    \item \texttt{fontawesome5} to include icons for my email, phone, GitHub, and LinkedIn.
+\end{itemize}
+
+% Step 3
+\section*{3. Defining Custom Colors}
+I created custom colors to make my CV visually appealing. I defined a ‘headerblue’ color for headings, a ‘darkgray’ color for general text, and an ‘accentcolor’ to give a modern touch to the underlines in the sections.
+
+% Step 4
+\section*{4. Formatting Fonts and Section Titles}
+I chose a sans-serif font for a modern look and formatted the section titles to stand out by making them bold and coloring them blue. Subsections were colored in dark gray and underlined with a light pink accent for consistency.
+
+% Step 5
+\section*{5. Creating the Header}
+In the header, I added my name in large text and centered it. Below, I listed my contact details, including email, phone number, GitHub, and LinkedIn, each accompanied by an icon to enhance visual engagement and accessibility.
+
+% Step 6
+\section*{6. Objective and Sections}
+I included an objective statement at the top to summarize my skills and aspirations. I then structured sections like “Education,” “Skills,” and “Projects” with clear, bullet-pointed content to effectively highlight my qualifications and experiences.
