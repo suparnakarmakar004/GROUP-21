@@ -67,3 +67,289 @@ public class MindReaderApp {
 \end{lstlisting}
 
 \end{document}
+\section*{Java Swing Application: SymbolApp}
+This document describes the Java Swing application named \texttt{SymbolApp}. The application showcases a simple "mind-reading" trick by displaying a grid of symbols and revealing a selected symbol based on user interaction. This document is formatted using LaTeX to provide a clear and professional presentation for academic purposes.
+
+\section*{1. Clone the Repository}
+The first step involved cloning the repository from the URL: \url{https://github.com/GeekAyan/STT} using GitHub Desktop. 
+I opened GitHub Desktop and navigated to the "File" menu. From there, I selected "Clone Repository" and pasted the URL into the corresponding field. After specifying my local directory where the repository would be cloned, I clicked "Clone" to download the project files onto my local machine. This provided access to the source code and all project dependencies.
+
+\section*{2. Set Up the Project}
+Next, I opened the project in Visual Studio Code (VSCode), a versatile code editor. The setup process involved reading through the \texttt{README.md} file, which provided detailed instructions for running the application. The instructions guided me through several steps, including:
+\begin{itemize}
+    \item Installing any required dependencies using a package manager such as Maven or Gradle, depending on the project's setup.
+    \item Ensuring that I had the correct version of Java Development Kit (JDK) installed.
+    \item Setting up any required environment variables for the application to run properly.
+\end{itemize}
+I followed these steps to ensure my development environment was correctly configured before running the application.
+\section*{3. Run the Application}
+Once the project was set up, I proceeded to run the application. The \texttt{README.md} provided the necessary commands for building and executing the project. In this case, I used the following command from the terminal:
+\begin{verbatim}
+    javac SymbolApp.java
+    java SymbolApp
+\end{verbatim}
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[line width = 2pt, black] 
+        ($(current page.north west) + (1cm,-1cm)$) 
+        rectangle 
+        ($(current page.south east) + (-1cm,1cm)$);
+\end{tikzpicture}
+\vspace{-1.2cm}
+
+These commands compiled the \texttt{SymbolApp.java} file and executed the resulting class file. I verified that the application ran as expected, displaying the main user interface with the grid of symbols and the interactive button.
+
+\section*{4. Modify the Button}
+\hspace{1.5cm}
+The application’s user interface includes a button that the user clicks to reveal their "selected" symbol. To personalize and improve the button, I made the following modifications:
+\begin{itemize}
+    \item Located the button's code within the \texttt{SymbolApp.java} file. The button was initialized using Java’s AWT \texttt{Button} class and labeled with default text.
+    \item I modified the button’s text from its original label to a more engaging phrase: \textbf{"Chin Tapak Dum Dum"}.
+    \item This required updating the following line of code:
+    \begin{verbatim}
+        submitButton = new Button("Chin Tapak Dum Dum");
+    \end{verbatim}
+    This change improved the interaction with the user by introducing a fun, customized message.
+\end{itemize}
+
+\section*{Code Description}
+\hspace{1.5cm}
+The \texttt{SymbolApp} class extends \texttt{Frame} and implements \texttt{ActionListener}, allowing it to respond to user actions like button clicks. It generates a random "special" symbol, which is displayed among other symbols in a 99-symbol grid. The special symbol is placed at multiples of 9. When the user clicks the button, the application reveals the special symbol, creating the illusion that the app has "read" the user's mind and guessed their chosen symbol.
+
+\subsection*{Key Code Modifications}
+\hspace{1.5cm}
+\begin{enumerate}
+    \item The button text was updated to \textbf{"Chin Tapak Dum Dum"} to make the user interaction more playful and entertaining.
+    \item The button’s size was modified using \texttt{setPreferredSize()}, while the font style was adjusted with \texttt{setFont()} to ensure optimal proportions and better readability on the interface.
+    \item The button’s core functionality remained unchanged, allowing users to click it and reveal their selected symbol, maintaining the application’s interactive experience.
+\end{enumerate}
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[line width = 2pt, black] 
+        ($(current page.north west) + (1cm,-1cm)$) 
+        rectangle 
+        ($(current page.south east) + (-1cm,1cm)$);
+\end{tikzpicture}
+\vspace{-2cm}
+\section*{Java SymbolApp code}
+\begin{lstlisting}[language=Java, caption=Java Swing Application Code]
+\subsection{Code Listing}
+\begin{lstlisting}[language=Java, caption=Java Swing Application Code]
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class SymbolApp extends Frame implements ActionListener {
+    private Label[] symbolLabels = new Label[99];
+    private Button submitButton;
+    private String specialSymbol, selectedSymbol;
+    public SymbolApp() {
+        specialSymbol = Character.toString((char) (new Random().nextInt(94) + 33));
+        setLayout(new BorderLayout()); setSize(800, 700); setTitle("Symbol App");
+        TextArea instruction = new TextArea(
+            "Think of a 2-digit number, reverse it, subtract, then find your symbol below.\n" +
+            "I'll guess it! Click the button to see!", 5, 60, TextArea.SCROLLBARS_NONE);
+        instruction.setEditable(false); instruction.setFont(new Font("Arial", Font.PLAIN, 16));
+        add(instruction, BorderLayout.NORTH);
+        Panel symbolPanel = new Panel(new GridLayout(11, 9));
+        for (int i = 0; i < 99; i++) {
+            String symbol = (i % 9 == 0) ? specialSymbol : Character.toString((char) (33 + (i % 94)));
+            symbolLabels[i] = new Label(i + ": " + symbol);
+            symbolLabels[i].setAlignment(Label.CENTER);
+            symbolPanel.add(symbolLabels[i]);
+        }
+        add(symbolPanel, BorderLayout.CENTER);
+        submitButton = new Button("Chin Tapak Dum Dum");
+        submitButton.addActionListener(this);
+        add(new Panel().add(submitButton), BorderLayout.SOUTH);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+        setVisible(true);
+    }
+    pub\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+\title{2. Java Program: Mind Reader App}
+\author{}
+\date{}
+\maketitle
+
+\begin{lstlisting}
+// Mind Reader App in Java
+
+import java.util.Scanner;
+
+public class MindReaderApp {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Step 1: Ask user to think of a number
+        System.out.println("Think of a number between 1 and 10.");
+        
+        // Pause for dramatic effect
+        System.out.println("Now, multiply that number by 2.");
+        waitForUser();
+        
+        // Step 2: Add a fixed number to the result
+        System.out.println("Add 8 to your result.");
+        waitForUser();
+        
+        // Step 3: Divide the result by 2
+        System.out.println("Divide the result by 2.");
+        waitForUser();
+        
+        // Step 4: Subtract the original number
+        System.out.println("Finally, subtract the original number.");
+        waitForUser();
+        
+        // Reveal the answer
+        System.out.println("The result is... 4!");
+        
+        scanner.close();
+    }
+
+    // Helper method to pause and wait for the user
+    private static void waitForUser() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
+    }
+}
+\end{lstlisting}
+
+\end{document}
+\section*{Java Swing Application: SymbolApp}
+This document describes the Java Swing application named \texttt{SymbolApp}. The application showcases a simple "mind-reading" trick by displaying a grid of symbols and revealing a selected symbol based on user interaction. This document is formatted using LaTeX to provide a clear and professional presentation for academic purposes.
+
+\section*{1. Clone the Repository}
+The first step involved cloning the repository from the URL: \url{https://github.com/GeekAyan/STT} using GitHub Desktop. 
+I opened GitHub Desktop and navigated to the "File" menu. From there, I selected "Clone Repository" and pasted the URL into the corresponding field. After specifying my local directory where the repository would be cloned, I clicked "Clone" to download the project files onto my local machine. This provided access to the source code and all project dependencies.
+
+\section*{2. Set Up the Project}
+Next, I opened the project in Visual Studio Code (VSCode), a versatile code editor. The setup process involved reading through the \texttt{README.md} file, which provided detailed instructions for running the application. The instructions guided me through several steps, including:
+\begin{itemize}
+    \item Installing any required dependencies using a package manager such as Maven or Gradle, depending on the project's setup.
+    \item Ensuring that I had the correct version of Java Development Kit (JDK) installed.
+    \item Setting up any required environment variables for the application to run properly.
+\end{itemize}
+I followed these steps to ensure my development environment was correctly configured before running the application.
+\section*{3. Run the Application}
+Once the project was set up, I proceeded to run the application. The \texttt{README.md} provided the necessary commands for building and executing the project. In this case, I used the following command from the terminal:
+\begin{verbatim}
+    javac SymbolApp.java
+    java SymbolApp
+\end{verbatim}
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[line width = 2pt, black] 
+        ($(current page.north west) + (1cm,-1cm)$) 
+        rectangle 
+        ($(current page.south east) + (-1cm,1cm)$);
+\end{tikzpicture}
+\vspace{-1.2cm}
+
+These commands compiled the \texttt{SymbolApp.java} file and executed the resulting class file. I verified that the application ran as expected, displaying the main user interface with the grid of symbols and the interactive button.
+
+\section*{4. Modify the Button}
+\hspace{1.5cm}
+The application’s user interface includes a button that the user clicks to reveal their "selected" symbol. To personalize and improve the button, I made the following modifications:
+\begin{itemize}
+    \item Located the button's code within the \texttt{SymbolApp.java} file. The button was initialized using Java’s AWT \texttt{Button} class and labeled with default text.
+    \item I modified the button’s text from its original label to a more engaging phrase: \textbf{"Chin Tapak Dum Dum"}.
+    \item This required updating the following line of code:
+    \begin{verbatim}
+        submitButton = new Button("Chin Tapak Dum Dum");
+    \end{verbatim}
+    This change improved the interaction with the user by introducing a fun, customized message.
+\end{itemize}
+
+\section*{Code Description}
+\hspace{1.5cm}
+The \texttt{SymbolApp} class extends \texttt{Frame} and implements \texttt{ActionListener}, allowing it to respond to user actions like button clicks. It generates a random "special" symbol, which is displayed among other symbols in a 99-symbol grid. The special symbol is placed at multiples of 9. When the user clicks the button, the application reveals the special symbol, creating the illusion that the app has "read" the user's mind and guessed their chosen symbol.
+
+\subsection*{Key Code Modifications}
+\hspace{1.5cm}
+\begin{enumerate}
+    \item The button text was updated to \textbf{"Chin Tapak Dum Dum"} to make the user interaction more playful and entertaining.
+    \item The button’s size was modified using \texttt{setPreferredSize()}, while the font style was adjusted with \texttt{setFont()} to ensure optimal proportions and better readability on the interface.
+    \item The button’s core functionality remained unchanged, allowing users to click it and reveal their selected symbol, maintaining the application’s interactive experience.
+\end{enumerate}
+\newpage
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[line width = 2pt, black] 
+        ($(current page.north west) + (1cm,-1cm)$) 
+        rectangle 
+        ($(current page.south east) + (-1cm,1cm)$);
+\end{tikzpicture}
+\vspace{-2cm}
+\section*{Java SymbolApp code}
+\begin{lstlisting}[language=Java, caption=Java Swing Application Code]
+\subsection{Code Listing}
+\begin{lstlisting}[language=Java, caption=Java Swing Application Code]
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class SymbolApp extends Frame implements ActionListener {
+    private Label[] symbolLabels = new Label[99];
+    private Button submitButton;
+    private String specialSymbol, selectedSymbol;
+    public SymbolApp() {
+        specialSymbol = Character.toString((char) (new Random().nextInt(94) + 33));
+        setLayout(new BorderLayout()); setSize(800, 700); setTitle("Symbol App");
+        TextArea instruction = new TextArea(
+            "Think of a 2-digit number, reverse it, subtract, then find your symbol below.\n" +
+            "I'll guess it! Click the button to see!", 5, 60, TextArea.SCROLLBARS_NONE);
+        instruction.setEditable(false); instruction.setFont(new Font("Arial", Font.PLAIN, 16));
+        add(instruction, BorderLayout.NORTH);
+        Panel symbolPanel = new Panel(new GridLayout(11, 9));
+        for (int i = 0; i < 99; i++) {
+            String symbol = (i % 9 == 0) ? specialSymbol : Character.toString((char) (33 + (i % 94)));
+            symbolLabels[i] = new Label(i + ": " + symbol);
+            symbolLabels[i].setAlignment(Label.CENTER);
+            symbolPanel.add(symbolLabels[i]);
+        }
+        add(symbolPanel, BorderLayout.CENTER);
+        submitButton = new Button("Chin Tapak Dum Dum");
+        submitButton.addActionListener(this);
+        add(new Panel().add(submitButton), BorderLayout.SOUTH);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+        setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e) {}
+    public static void main(String[] args) {
+        new SymbolApp();
+    }
+}
+\end{lstlisting}lic void actionPerformed(ActionEvent e) {}
+    public static void main(String[] args) {
+        new SymbolApp();
+    }
+}
+\end{lstlisting}
